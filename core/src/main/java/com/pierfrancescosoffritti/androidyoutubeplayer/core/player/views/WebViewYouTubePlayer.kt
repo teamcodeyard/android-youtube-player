@@ -21,8 +21,8 @@ import java.util.*
 /**
  * WebView implementation of [YouTubePlayer]. The player runs inside the WebView, using the IFrame Player API.
  */
-internal class WebViewYouTubePlayer constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
-    : WebView(context, attrs, defStyleAttr), YouTubePlayer, YouTubePlayerBridge.YouTubePlayerBridgeCallbacks {
+class WebViewYouTubePlayer @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int? = 0)
+    : WebView(context, attrs, defStyleAttr ?: 0), YouTubePlayer, YouTubePlayerBridge.YouTubePlayerBridgeCallbacks {
 
     private lateinit var youTubePlayerInitListener: (YouTubePlayer) -> Unit
 
