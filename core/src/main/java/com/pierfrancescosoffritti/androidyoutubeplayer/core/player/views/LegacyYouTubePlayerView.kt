@@ -132,7 +132,7 @@ internal class LegacyYouTubePlayerView(context: Context, attrs: AttributeSet? = 
      * @see LegacyYouTubePlayerView.initialize
      */
     fun initializeWithWebUi(youTubePlayerListener: YouTubePlayerListener, handleNetworkEvents: Boolean) {
-        val iFramePlayerOptions = IFramePlayerOptions.Builder().controls(1).autoHide(1).build()
+        val iFramePlayerOptions = IFramePlayerOptions.Builder().controls(0).build()
         inflateCustomPlayerUi(R.layout.ayp_empty_layout)
         initialize(youTubePlayerListener, handleNetworkEvents, iFramePlayerOptions)
     }
