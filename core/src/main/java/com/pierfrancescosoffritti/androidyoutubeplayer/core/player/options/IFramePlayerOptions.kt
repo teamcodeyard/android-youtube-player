@@ -34,6 +34,7 @@ class IFramePlayerOptions private constructor(private val playerOptions: JSONObj
             private const val MODEST_BRANDING = "modestbranding"
             private const val CC_LOAD_POLICY = "cc_load_policy"
             private const val CC_LANG_PREF = "cc_lang_pref"
+            private const val AUTO_HIDE = "autohide"
         }
 
         private val builderOptions = JSONObject()
@@ -49,6 +50,7 @@ class IFramePlayerOptions private constructor(private val playerOptions: JSONObj
             addInt(IV_LOAD_POLICY, 3)
             addInt(MODEST_BRANDING, 1)
             addInt(CC_LOAD_POLICY, 0)
+            addInt(AUTO_HIDE, 0)
         }
 
         fun build(): IFramePlayerOptions {
@@ -61,6 +63,11 @@ class IFramePlayerOptions private constructor(private val playerOptions: JSONObj
          */
         fun controls(controls: Int): Builder {
             addInt(CONTROLS, controls)
+            return this
+        }
+
+        fun autoHide(autoHide: Int): Builder {
+            addInt(AUTO_HIDE, autoHide)
             return this
         }
 
