@@ -200,4 +200,8 @@ class YouTubePlayerView(context: Context, attrs: AttributeSet? = null, defStyleA
 
     fun removeFullScreenListener(fullScreenListener: YouTubePlayerFullScreenListener): Boolean =
             fullScreenHelper.removeFullScreenListener(fullScreenListener)
+
+    fun clearCacheAndReInitYoutubePlayer() {
+        legacyTubePlayerView.clearCacheAndReInitYoutubePlayer()
+    }
 }
