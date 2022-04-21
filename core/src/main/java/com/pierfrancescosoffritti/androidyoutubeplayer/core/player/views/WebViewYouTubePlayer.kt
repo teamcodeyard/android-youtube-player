@@ -31,7 +31,10 @@ class WebViewYouTubePlayer @JvmOverloads constructor(context: Context, attrs: At
 
     internal var isBackgroundPlaybackEnabled = false
 
+    private var savedPlayerOptions: IFramePlayerOptions? = null
+
     internal fun initialize(initListener: (YouTubePlayer) -> Unit, playerOptions: IFramePlayerOptions?) {
+        savedPlayerOptions = playerOptions
         youTubePlayerInitListener = initListener
         initWebView(playerOptions ?: IFramePlayerOptions.default)
     }
@@ -125,5 +128,14 @@ class WebViewYouTubePlayer @JvmOverloads constructor(context: Context, attrs: At
             return
 
         super.onWindowVisibilityChanged(visibility)
+    }
+
+    fun clearCacheAndReInitWebView() {
+        webChromeClient = null
+        clearCache(true)
+        clearFormData()
+        clearHistory()
+        clearSslPreferences()
+        initWebView(savedPlayerOptions ?: IFramePlayerOptions.default)
     }
 }
