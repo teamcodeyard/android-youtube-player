@@ -33,13 +33,24 @@ class WebViewYouTubePlayer @JvmOverloads constructor(context: Context, attrs: At
 
     private var savedPlayerOptions: IFramePlayerOptions? = null
 
+    private var isReadyCalledBeforeInit = false
+
     internal fun initialize(initListener: (YouTubePlayer) -> Unit, playerOptions: IFramePlayerOptions?) {
         savedPlayerOptions = playerOptions
         youTubePlayerInitListener = initListener
+        if (isReadyCalledBeforeInit) {
+            youTubePlayerInitListener(this)
+        }
         initWebView(playerOptions ?: IFramePlayerOptions.default)
     }
 
-    override fun onYouTubeIFrameAPIReady() = youTubePlayerInitListener(this)
+    override fun onYouTubeIFrameAPIReady() {
+        if (::youTubePlayerInitListener.isInitialized) {
+            youTubePlayerInitListener(this)
+        } else {
+            isReadyCalledBeforeInit = true
+        }
+    }
 
     override fun getInstance(): YouTubePlayer = this
 
